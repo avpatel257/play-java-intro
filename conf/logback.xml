@@ -14,12 +14,16 @@
             </fileNamePattern>
         </rollingPolicy>
         <encoder>
-            <pattern>%d %-5p: %logger{15}.%M\(%L\): [%X{profileId}] %msg%n%ex{30}
+            <pattern>%d %-5p: %logger{15}.%M\(%L\) %msg%n%ex{30}
             </pattern>
         </encoder>
     </appender>
     <appender name="ACCESS_LOG_FILE" class="ch.qos.logback.core.FileAppender">
         <file>/tmp/logs/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/tmp/logs/access.log.%d{yyyy-MM-dd-HH}
+            </fileNamePattern>
+        </rollingPolicy>
         <encoder>
             <pattern>%d %msg%n</pattern>
         </encoder>
