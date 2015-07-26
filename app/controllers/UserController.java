@@ -12,11 +12,7 @@ import play.mvc.Result;
 
 public class UserController extends Controller {
     public Result getPerson() {
-        try {
-            throw new RuntimeException("Internal Server Error");
-        } catch (Exception e) {
-            return internalServerError(e.getMessage());
-        }
+        throw new RuntimeException("User not found");
     }
 
     public Result getPersonById(Long id) {
