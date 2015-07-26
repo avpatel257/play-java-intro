@@ -1,0 +1,44 @@
+<configuration>
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%coloredLevel - %logger - %message%n%xException</pattern>
+        </encoder>
+    </appender>
+    <appender name="SERVER_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/tmp/logs/server.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/tmp/logs/server.log.%d{yyyy-MM-dd-HH}
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p: %logger{15}.%M\(%L\): [%X{profileId}] %msg%n%ex{30}
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ACCESS_LOG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/tmp/logs/access.log</file>
+        <encoder>
+            <pattern>%d %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- additivity=false ensures access log data only goes to the access log -->
+    <logger name="accesslog" level="INFO" additivity="false">
+        <appender-ref ref="ACCESS_LOG_FILE"/>
+    </logger>
+    <!--
+      The logger name is typically the Java/Scala package name.
+      This configures the log level to log at for a package and its children packages.
+    -->
+    <logger name="play" level="INFO"/>
+    <logger name="application" level="DEBUG"/>
+
+    <root level="ERROR">
+        <appender-ref ref="SERVER_LOG_FILE"/>
+    </root>
+
+</configuration>

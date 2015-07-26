@@ -1,0 +1,2 @@
+GET 	/person				controllers.UserController.getPerson()
+GET 	/person/:id				controllers.UserController.getPersonById(id:Long)
