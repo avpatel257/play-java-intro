@@ -1,4 +1,3 @@
-This is your new Play application
-=================================
-
-This file will be packaged with your application, when using `activator dist`.
+Sample end points:
+http://localhost:9000/api/v1/person/235252 -> this should return user json
+http://localhost:9000/api/v1/person -> this should result in error
