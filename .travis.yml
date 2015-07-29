@@ -1,7 +1,12 @@
 language: scala
 scala:
-  - 2.11.1
+  - 2.11.6
+cache:
+  directories:
+  - $HOME/.ivy2
+  - $HOME/.sbt/launchers/0.13.8/
+  - $HOME/.sbt/boot/
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION scoverage:test coveralls
+  - sbt ++$TRAVIS_SCALA_VERSION clean compile test
 jdk:
   - oraclejdk8
